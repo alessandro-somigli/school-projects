@@ -1,0 +1,75 @@
+form {
+    position: absolute;
+
+    div { position: relative; }
+
+    left: 50%;
+    top: -50%;
+
+    width: 50%;
+
+    transform: translate(-50%, -50%);
+
+    transition: top .5s ease;  
+
+    background: #fff;
+
+    border: 2px solid #000;
+    border-radius: .5rem;
+
+    padding: .5rem;
+
+    &.visible {
+        top: 50%;
+    }
+}
+
+button, .form-input {
+    margin-top: .5rem;
+    padding: .5rem;
+    
+    border: none;
+    border-radius: .25rem;
+
+    cursor: pointer;
+
+    color: #fff;
+
+    &.open, &.form-input {
+        background: #295;
+    }
+
+    &:active {
+        background: rgb(16, 104, 54);
+    }
+}
+
+label {
+    margin-top: .5rem;
+    display: inline-block;
+}
+
+.button-close {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    right: 0;
+
+    width: 1rem;
+    height: 1rem;
+
+    cursor: pointer;
+
+    background-color: #d0342c;
+    color: #fff;
+
+    padding: .25rem;
+    border-radius: .25rem;
+
+    &:active {
+        background-color: #9a140c;
+    }
+}

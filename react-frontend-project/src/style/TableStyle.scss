@@ -1,0 +1,32 @@
+table {
+    margin-top: 2rem;
+    border-collapse: collapse;
+
+    th, td {
+        border: 2px solid #000;
+
+        padding: 0 .5rem;
+
+        text-align: center;
+    }
+
+    th { padding: .5rem;}
+
+    button {
+        background-color: #d0342c;
+        color: #fff;
+
+        &:active {
+            background-color: #9a140c;
+        }
+
+        padding: .5rem;
+
+        margin: .5rem 0;
+
+        border: none;
+        border-radius: .25rem;
+
+        cursor: pointer;
+    }
+}
