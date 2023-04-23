@@ -41,9 +41,11 @@
                     echo "<div>
                             <h1><a href='/community.php?c=$community_name'>$community_name</a></h1>
                             <p>subscribers: $total_subscribers</p>
-                            <a href='/fn/unsubscribe.php?c=$community_name'>unsubscribe</a>
+                            <a href='/fn/unsubscribe.php?c=$community_name&r=/home.php'>unsubscribe</a>
                         </div>";
                 }
+
+                echo "<a href='/add/community.php'>create a community</a>";
             } else {
                 echo "<h1>login to view some communities!</h1>";
             }

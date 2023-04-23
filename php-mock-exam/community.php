@@ -11,15 +11,20 @@
         <nav>
             <?php
             $community = $mysqli -> query("SELECT Communities.name, 
+                COUNT(*) AS total_subscribers,
                 CASE WHEN Communities.name IN (
                     SELECT Subscriptions.community_name FROM Subscriptions
                     WHERE Subscriptions.user_email = '$user_email')
-                THEN 1 ELSE 0 END AS is_subscribed
+                    THEN 1 ELSE 0 END AS is_subscribed
                 FROM Communities
-                    WHERE Communities.name = '$community_name';") -> fetch_assoc();
+                    INNER JOIN Subscriptions ON Communities.name = Subscriptions.community_name
+                    WHERE Communities.name = '$community_name'
+                    GROUP BY Subscriptions.community_name;") -> fetch_assoc();
 
             if ($community) {
+                $total_subscribers = $community['total_subscribers'];
                 echo "<h1>$community_name</h1>";
+                echo "<h2>subscribers: $total_subscribers</h2>";
                 
                 if ($user_email) {
                     if ($community['is_subscribed'] == 1) { echo "<a href='/fn/unsubscribe.php?c=$community_name'>unsubscribe</a>"; }
@@ -39,17 +44,20 @@
                 ORDER BY Events.starting_date;");
 
                 while ($event = $events -> fetch_assoc()) {
+                    $event_id = $event['id'];
                     $event_name = $event['event_name'];
                     $event_description = $event['event_description'];
                     $event_location = $event['event_location'];
                     $event_date = $event['starting_date'];
                     echo "<div>
-                            <h1>$event_name</h1>
+                            <h1><a href='/event.php?e=$event_id'>$event_name</a></h1>
                             <p>description: $event_description</p>
                             <p>location: $event_location</p>
                             <p>date: $event_date</p>
                         </div>";
                 }
+
+                if ($user_email) { echo "<a href='/add/event.php'>add an event</a>"; }
             } else {
                 echo "<h3>This community does not exist :(</h3>";
             }

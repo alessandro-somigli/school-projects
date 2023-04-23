@@ -38,7 +38,7 @@ create table Events (
 );
 
 create table Reviews (
-	id INT PRIMARY KEY auto_increment,
+	review_id INT PRIMARY KEY auto_increment,
 	event_id INT,
 	user_email VARCHAR(255),
 
@@ -50,12 +50,9 @@ create table Reviews (
     FOREIGN KEY (user_email) REFERENCES Users(email)
 );
 
-
-
 INSERT INTO Communities (name)
 VALUES ('Community A'), ('Community B'), ('Community C'), ('Community D'), ('Community E');
 
--- Add 5 users
 INSERT INTO Users (email, username, first_name, last_name, password_hash)
 VALUES 
   ('user1@domain.com', 'user1', 'John', 'Doe', '123456'),
@@ -65,7 +62,6 @@ VALUES
   ('user5@domain.com', 'user5', 'David', 'Lee', 'zxcvb'),
   ('user6@domain.com', 'user6', 'Mario', 'Roshark', 'bibibi');
 
--- Add 5 subscriptions
 INSERT INTO Subscriptions (community_name, user_email)
 VALUES 
   ('Community A', 'user1@domain.com'),
