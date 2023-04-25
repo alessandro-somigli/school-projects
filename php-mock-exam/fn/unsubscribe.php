@@ -6,6 +6,8 @@ $user_email = $_SESSION['user_email'] ?? null;
 $community_name = $_GET['c'] ?? null;
 $redirect = $_GET['r'] ?? "/community.php?c=$community_name";
 
+$login_redirect = "/fn/unsubscribe.php?c=$community_name&r=$redirect";
+
 if ($user_email) {
     include $_SERVER['DOCUMENT_ROOT']."/utils/connection.php";
     $community = $mysqli -> query("SELECT Communities.name, 
@@ -24,5 +26,5 @@ if ($user_email) {
             header("Location: $redirect");
         } else { echo "<h2>error: you are not subscribed yet</h2>"; }
     } else { echo "<h2>error: community not found.</h2>"; }
-} else { echo "<h2>error: log in to subscribe</h2>"; }
+} else { echo "<h2>error: log in to unsubscribe. <a href='/auth/login.php?r=$login_redirect'>log in</a></h2>"; }
 ?>

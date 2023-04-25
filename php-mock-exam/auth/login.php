@@ -5,7 +5,12 @@
         session_start();
 
         $user_email = $_SESSION['user_email'] ?? null;
-        if ($user_email) { header("Location: /home.php"); }
+        $redirect = $_GET['r'] ?? '/home.php';
+        $force_login = $_GET['f'] ?? false;
+        
+        if ($force_login) {
+            $_SESSION['user_email'] = null;
+        } else if ($user_email) { header("Location: $redirect"); }
         ?>
 
         <nav>
@@ -13,7 +18,9 @@
         </nav>
 
         <div>
-            <form action="/fn/user/login.php" method="POST">
+            <?php
+            echo "<form action='/fn/user/login.php?r=$redirect' method='POST'>"
+            ?>
                 <label for="email">email: </label>
                 <input type="email" name="email"> <br><br>
 

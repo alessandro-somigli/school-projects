@@ -10,14 +10,14 @@
 
         <nav>
             <?php
-            $community = $mysqli -> query("SELECT Communities.name, 
-                COUNT(*) AS total_subscribers,
+            $community = $mysqli -> query("SELECT Communities.name, Communities.owner, 
+                COUNT(Subscriptions.community_name) AS total_subscribers,
                 CASE WHEN Communities.name IN (
                     SELECT Subscriptions.community_name FROM Subscriptions
                     WHERE Subscriptions.user_email = '$user_email')
                     THEN 1 ELSE 0 END AS is_subscribed
                 FROM Communities
-                    INNER JOIN Subscriptions ON Communities.name = Subscriptions.community_name
+                    LEFT JOIN Subscriptions ON Communities.name = Subscriptions.community_name
                     WHERE Communities.name = '$community_name'
                     GROUP BY Subscriptions.community_name;") -> fetch_assoc();
 
@@ -29,6 +29,10 @@
                 if ($user_email) {
                     if ($community['is_subscribed'] == 1) { echo "<a href='/fn/unsubscribe.php?c=$community_name'>unsubscribe</a>"; }
                     else { echo "<a href='/fn/subscribe.php?c=$community_name'>subscribe</a>"; }
+
+                    if ($user_email == $community['owner']) {
+                        echo "<br> <a href='/fn/delete/community.php?c=$community_name'>delete community</a>";
+                    }
                 }
             } else { echo "<h1>???</h1>"; }
             ?>
@@ -58,9 +62,7 @@
                 }
 
                 if ($user_email) { echo "<a href='/add/event.php'>add an event</a>"; }
-            } else {
-                echo "<h3>This community does not exist :(</h3>";
-            }
+            } else { echo "<h3>This community does not exist :(</h3>"; }
             ?>
         </div>
     </body>

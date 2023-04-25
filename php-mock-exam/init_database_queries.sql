@@ -3,11 +3,12 @@ create database school_mock_exam;
 use school_mock_exam;
 
 create table Communities (
-	name VARCHAR(255) PRIMARY KEY
+	name VARCHAR(255) PRIMARY KEY,
+  owner VARCHAR(320)
 );
 
 create table Users (
-	email VARCHAR(255) PRIMARY KEY,
+	email VARCHAR(320) PRIMARY KEY,
 	
 	username VARCHAR(255),
 	first_name VARCHAR(255),
@@ -17,15 +18,15 @@ create table Users (
 
 create table Subscriptions (
 	community_name VARCHAR(255),
-	user_email VARCHAR(255),
+	user_email VARCHAR(320),
 
 	PRIMARY KEY (community_name, user_email),
-	FOREIGN KEY (community_name) REFERENCES Communities(name),
-	FOREIGN KEY (user_email) REFERENCES Users(email)
+	FOREIGN KEY (community_name) REFERENCES Communities(name) ON DELETE CASCADE,
+	FOREIGN KEY (user_email) REFERENCES Users(email) ON DELETE CASCADE
 );
 
 create table Events (
-	id INT PRIMARY KEY auto_increment,
+	id INT PRIMARY KEY AUTO_INCREMENT,
 	community_name VARCHAR(255),
 
 	event_name VARCHAR(255),
@@ -34,20 +35,20 @@ create table Events (
 
 	starting_date DATE,
 
-	FOREIGN KEY(community_name) REFERENCES Communities(name)
+	FOREIGN KEY(community_name) REFERENCES Communities(name) ON DELETE CASCADE
 );
 
 create table Reviews (
 	review_id INT PRIMARY KEY auto_increment,
 	event_id INT,
-	user_email VARCHAR(255),
+	user_email VARCHAR(320),
 
 	title  VARCHAR(255),
 	text VARCHAR(1024),
 	rating INT,
 	
-    FOREIGN KEY (event_id) REFERENCES Events(id),
-    FOREIGN KEY (user_email) REFERENCES Users(email)
+  FOREIGN KEY (event_id) REFERENCES Events(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_email) REFERENCES Users(email) ON DELETE CASCADE
 );
 
 INSERT INTO Communities (name)
