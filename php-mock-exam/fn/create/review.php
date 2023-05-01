@@ -31,6 +31,6 @@ if (!$exists) {
 
 } else { echo "<h2>error: provide valid event data. </h2>"; }
 } else { echo "<h2>error: this event does not exist.</h2>"; }
-} else { echo "<h2>error: you are not logged in. <a href='/auth/login.php?r=/fn/create/community.php?e=$event&title=$review_title&text=$review_text&rating=$review_rating'>log in</a></h2>"; }
+} else { echo "<h2>error: you are not logged in. <a href='/auth/login.php?r=/fn/create/review.php?e=$event&title=$review_title&text=$review_text&rating=$review_rating'>log in</a></h2>"; }
 
 ?>
