@@ -16,11 +16,13 @@ nav * { margin-right: 20px; }
 nav h3:has(a), nav a { margin-left: auto; }
 
 form {
-    width: fit-content;
-
     margin: 20px auto;
     padding: 20px;
+}
 
+form:not(.search_form) {
+    width: fit-content;
+    
     border: 2px solid black;
     box-shadow: 8px 8px 0px 1px #000000;
 }

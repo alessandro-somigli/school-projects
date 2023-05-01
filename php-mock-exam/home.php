@@ -20,10 +20,10 @@
             }
             ?>
 
-            <!-- <form action="/search/communities.php" method="GET">
+            <form action="/search/communities.php" method="GET" class="search_form">
                 <input type="text" name="q">
                 <input type="submit" value="search">
-            </form> -->
+            </form>
         </nav>
         <div>
             <?php
