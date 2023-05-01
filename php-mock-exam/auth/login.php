@@ -32,5 +32,7 @@
             <h4><a href="/auth/signup.php">don't have an account?</a></h4>
             <h4><a href="/home.php">home</a></h4>
         </div>
+
+        <link rel="stylesheet" href="/style/globals.css">
     </body>
 </html>

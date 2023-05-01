@@ -20,10 +20,10 @@
             }
             ?>
 
-            <form action="/search/communities.php" method="GET">
+            <!-- <form action="/search/communities.php" method="GET">
                 <input type="text" name="q">
                 <input type="submit" value="search">
-            </form>
+            </form> -->
         </nav>
         <div>
             <?php
@@ -51,5 +51,7 @@
             }
             ?>
         </div>
+
+        <link rel="stylesheet" href="/style/globals.css">
     </body>
 </html>

@@ -14,7 +14,7 @@
 
         <nav>
             <h1>Create a new Community</h1>
-            <a href="/home.php">go back home</a>
+            <h3><a href="/home.php">go back home</a><h3>
         </nav>
 
         <div>
@@ -25,5 +25,7 @@
                 <input type="submit">
             </form>
         </div>
+        
+        <link rel="stylesheet" href="/style/globals.css">
     </body>
 </html>

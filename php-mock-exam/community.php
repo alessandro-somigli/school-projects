@@ -23,15 +23,15 @@
 
             if ($community) {
                 $total_subscribers = $community['total_subscribers'];
-                echo "<h1>$community_name</h1>";
+                echo "<h1>$community_name |</h1>";
                 echo "<h2>subscribers: $total_subscribers</h2>";
                 
                 if ($user_email) {
-                    if ($community['is_subscribed'] == 1) { echo "<a href='/fn/unsubscribe.php?c=$community_name'>unsubscribe</a>"; }
-                    else { echo "<a href='/fn/subscribe.php?c=$community_name'>subscribe</a>"; }
+                    if ($community['is_subscribed'] == 1) { echo "<h3><a href='/fn/unsubscribe.php?c=$community_name'>unsubscribe</a></h3>"; }
+                    else { echo "<h3><a href='/fn/subscribe.php?c=$community_name'>subscribe</a></h3>"; }
 
                     if ($user_email == $community['owner']) {
-                        echo "<br> <a href='/fn/delete/community.php?c=$community_name'>delete community</a>";
+                        echo "<br> <h3><a href='/fn/delete/community.php?c=$community_name'>delete community</a></h3>";
                     }
                 }
             } else { echo "<h1>???</h1>"; }
@@ -61,9 +61,14 @@
                         </div>";
                 }
 
-                if ($user_email) { echo "<a href='/add/event.php'>add an event</a>"; }
+                $subscribed = $mysqli -> query("SELECT Subscriptions.user_email FROM Subscriptions WHERE 
+                    Subscriptions.community_name = '$community_name' AND Subscriptions.user_email = '$user_email';") -> num_rows > 0;
+                
+                if ($subscribed) { echo "<h3><a href='/add/event.php?c=$community_name'>add an event</a></h3>"; }
             } else { echo "<h3>This community does not exist :(</h3>"; }
             ?>
         </div>
+
+        <link rel="stylesheet" href="/style/globals.css">
     </body>
 </html>
