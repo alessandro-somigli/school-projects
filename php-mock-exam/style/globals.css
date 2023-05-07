@@ -1,5 +1,7 @@
+
 body {
     margin: 0;
+    
 }
 
 nav {
@@ -39,4 +41,26 @@ div {
 
 div > div {
     margin: 20px 0px;
+    border-top: 5px solid black;
+    border-right: 3px solid black;
 }
+
+a,input[type="submit"]{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    border: 2px solid black;
+    padding: 6px 12px;
+    margin-bottom: 6px;
+    display: inline-block;
+    box-shadow: 2px 2px 0px 1px #000000;
+
+}
+
+a:active, input[type="submit"]:active{
+    position: relative;
+    bottom: -2px;
+    left: 2px;
+    box-shadow: none;
+}
+

@@ -1,5 +1,6 @@
 <html>
-    <head><title>home</title></head>
+    <head><title>home</title>
+   </head>
     <body>
         <?php
         session_start();
@@ -13,16 +14,16 @@
                 $user = $mysqli -> query("SELECT * FROM Users WHERE Users.email = '$user_email';") -> fetch_assoc();
                 $username = $user['username'];
                 echo "<h1>$username</h1>";
-                echo "<a href='/fn/user/logout.php'>log out</a>";
+                echo "<a href='/fn/user/logout.php'>LOG OUT</a>";
             } else {
-                echo "<h1>home</h1>";
-                echo "<a href='/auth/login.php'>log in</a>";
+                echo "<h1>HOME</h1>";
+                echo "<a href='/auth/login.php' role='button'>LOG IN</a>";
             }
-            ?>
+            ?> 
 
-            <form action="/search/communities.php" method="GET" class="search_form">
+            <form action="/search/communities.php" method="GET" class="search_form" style="margin-right: 0px;">
                 <input type="text" name="q">
-                <input type="submit" value="search">
+                <input type="submit" value="Search">
             </form>
         </nav>
         <div>
@@ -40,17 +41,19 @@
                     $total_subscribers = $community['total_subscribers'];
                     echo "<div>
                             <h1><a href='/community.php?c=$community_name'>$community_name</a></h1>
-                            <p>subscribers: $total_subscribers</p>
-                            <a href='/fn/unsubscribe.php?c=$community_name&r=/home.php'>unsubscribe</a>
+                            <p>Subscribers: $total_subscribers</p>
+                            <a href='/fn/unsubscribe.php?c=$community_name&r=/home.php'>Unsubscribe</a>
                         </div>";
                 }
 
-                echo "<a href='/add/community.php'>create a community</a>";
+                echo "<a href='/add/community.php'>Create a community</a>";
             } else {
-                echo "<h1>login to view some communities!</h1>";
+                echo "<h1>Login to view some communities!</h1>";
             }
             ?>
         </div>
+        
+        
 
         <link rel="stylesheet" href="/style/globals.css">
     </body>

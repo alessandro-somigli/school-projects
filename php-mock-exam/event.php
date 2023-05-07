@@ -23,7 +23,7 @@
             } else { echo "<h1>???</h1>"; }
             ?>
 
-            <h3><a href="/home.php">back to home</a></h3>
+            <h3><a href="/home.php">Back to home</a></h3>
         </nav>
 
         <div>
@@ -58,15 +58,15 @@
                 echo "<div>
                     <h1>$title</h1>
                     <p>$text</p>
-                    <p>rating: $rating *</p>
-                    <p>owner: $owner_email</p>
+                    <p>Rating: $rating *</p>
+                    <p>Owner: $owner_email</p>
                 </div>";
             }
 
             $subscribed = $mysqli -> query("SELECT Subscriptions.user_email FROM Subscriptions WHERE 
                 Subscriptions.community_name = '$community_name' AND Subscriptions.user_email = '$user_email';") -> num_rows > 0;
                 
-            if ($subscribed) { echo "<h3><a href='/add/review.php?e=$event_id'>write a review</a></h3>"; }
+            if ($subscribed) { echo "<h3><a href='/add/review.php?e=$event_id'>Write a review</a></h3>"; }
             ?>
         </div>
 
